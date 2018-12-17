@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>用户权限</title>
+    <link rel="stylesheet" type="text/css" href="jquery-easyui-1.6.10/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="jquery-easyui-1.6.10/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="jquery-easyui-1.6.10/demo/demo.css">
+    <script type="text/javascript" src="jquery-easyui-1.6.10/jquery.min.js"></script>
+    <script type="text/javascript" src="jquery-easyui-1.6.10/jquery.easyui.min.js"></script>
+    <script>
+        $(function(){
+            $('#tt').datagrid({
+                title:'用户权限',
+                iconCls:'icon-edit',
+                width:934,
+                height:400,
+                singleSelect:true,
+                idField:'itemid',
+                url:'http://localhost:12829/sso.asmx/GetUserPermissionList',
+                columns:[[
+                    {field:'username',title:'用户名称',width:70,align:'center'},
+                    {
+                        field: 'cunzhuang', title: '村庄', width: 70,align:'center',
+                        formatter:function(value,row,index){
+                            var cell;
+                            if(value==1){
+                                //cell='<input type="checkbox" value="1" checked/>'
+                                cell='P';
+                            }else {
+                                //cell='<input type="checkbox" value="0" />'
+                                cell='';
+                            }
+                            return cell;
+                        },
+                        editor:{
+                            type:'checkbox',
+                            options:{
+                                on: 'P',
+                                off: ''
+                            }
+
+                        }
+                    },
+                    {
+                        field:'cesuo',title:'厕所',width:70,align:'center',
+                        formatter:function(value,row,index){
+                            var cell;
+                            if(value==1){
+                                cell='<input type="checkbox" value="1" checked />'
+                            }else {
+                                cell='<input type="checkbox" value="0" />'
+                            }
+                            return cell;
+                        }
+                    },
+                    {
+                        field:'minsu',title:'民宿',width:70,align:'center',
+                        formatter:function(value,row,index){
+                            var cell;
+                            if(value==1){
+                                cell='<input type="checkbox" value="1" checked />'
+                            }else {
+                                cell='<input type="checkbox" value="0" />'
+                            }
+                            return cell;
+                        }
+                    },
+                    {
+                        field:'jingqu',title:'景区',width:70,align:'center',
+                        formatter:function(value,row,index){
+                            var cell;
+                            if(value==1){
+                                //cell='<input type="checkbox" value="1" checked/>'
+                                cell='P';
+                            }else {
+                                //cell='<input type="checkbox" value="0" />'
+                                cell='';
+                            }
+                            return cell;
+                        },
+                        editor:{
+                            type:'checkbox',
+                            options:{
+                                on: 1,
+                                off: 0
+                            }
+
+                        }
+                    },
+                    {
+                        field:'addtuceng',title:'添加图层',width:70,align:'center',
+                        formatter:function(value,row,index){
+                            var cell;
+                            if(value==1){
+                                cell='<input type="checkbox" value="1" checked />'
+                            }else {
+                                cell='<input type="checkbox" value="0" />'
+                            }
+                            return cell;
+                        }
+                    },
+                    {
+                        field:'shouhuiditu',title:'手绘地图',width:70,align:'center',
+                        formatter:function(value,row,index){
+                            var cell;
+                            if(value==1){
+                                cell='<input type="checkbox" value="1" checked />'
+                            }else {
+                                cell='<input type="checkbox" value="0" />'
+                            }
+                            return cell;
+                        }
+                    },
+                    {
+                        field:'addimage',title:'添加影像',width:70,align:'center',
+                        formatter:function(value,row,index){
+                            var cell;
+                            if(value==1){
+                                cell='<input type="checkbox" value="1" checked />'
+                            }else {
+                                cell='<input type="checkbox" value="0" />'
+                            }
+                            return cell;
+                        }
+                    },
+                    {
+                        field:'ninghaimaoyucun',title:'宁海毛屿村',width:80,align:'center',
+                        formatter:function(value,row,index){
+                            var cell;
+                            if(value==1){
+                                cell='<input type="checkbox" value="1" checked />'
+                            }else {
+                                cell='<input type="checkbox" value="0" />'
+                            }
+                            return cell;
+                        }
+                    },
+                    {
+                        field:'ninghai',title:'宁海',width:70,align:'center',
+                        formatter:function(value,row,index){
+                            var cell;
+                            if(value==1){
+                                cell='<input type="checkbox" value="1" checked />'
+                            }else {
+                                cell='<input type="checkbox" value="0" />'
+                            }
+                            return cell;
+                        }
+                    },
+                    {
+                        field:'addmodel',title:'添加模型',width:70,align:'center',
+                        formatter:function(value,row,index){
+                            var cell;
+                            if(value==1){
+                                cell='<input type="checkbox" value="1" checked />'
+                            }else {
+                                cell='<input type="checkbox" value="0" />'
+                            }
+                            return cell;
+                        }
+                    },
+                    {
+                        field:'addpanorama',title:'添加全景',width:70,align:'center',
+                        formatter:function(value,row,index){
+                            var cell;
+                            if(value==1){
+                                cell='<input type="checkbox" value="1" checked />'
+                            }else {
+                                cell='<input type="checkbox" value="0" />'
+                            }
+                            return cell;
+                        }
+                    },
+                    {field:'action',title:'操作',width:80,align:'center',
+                        formatter:function(value,row,index){
+                            if (row.editing){
+                                var s = '<a href="#" onclick="saverow(this)">Save</a> ';
+                                var c = '<a href="#" onclick="cancelrow(this)">Cancel</a>';
+                                return s+c;
+                            } else {
+                                var e = '<a href="#" onclick="editrow(this)">Edit</a> ';
+                                var d = '<a href="#" onclick="deleterow(this)">Delete</a>';
+                                return e+d;
+                            }
+                        }
+                    }
+                ]],
+                onBeforeEdit:function(index,row){
+                    row.editing = true;
+                    updateActions(index);
+                },
+                onAfterEdit:function(index,row){
+                    row.editing = false;
+                    updateActions(index);
+                },
+                onCancelEdit:function(index,row){
+                    row.editing = false;
+                    updateActions(index);
+                }
+            });
+        });
+        function updateActions(index){
+            $('#tt').datagrid('updateRow',{
+                index: index,
+                row:{}
+            });
+        }
+        function getRowIndex(target){
+            var tr = $(target).closest('tr.datagrid-row');
+            return parseInt(tr.attr('datagrid-row-index'));
+        }
+        function editrow(target){
+            $('#tt').datagrid('beginEdit', getRowIndex(target));
+
+        }
+        function deleterow(target){
+            $.messager.confirm('Confirm','确定要删除吗?',function(r){
+                if (r){
+                    $('#tt').datagrid('deleteRow', getRowIndex(target));
+                }
+            });
+        }
+
+        function saverow(target){
+            $('#tt').datagrid('endEdit', getRowIndex(target));
+            // var row=$('#tt').datagrid('getSelected');
+            // var username=row.username;
+            // var cunzhuang=row.cunzhuang;
+            // var cesuo=row.cesuo;
+            // var minsu=row.minsu;
+            // var jingqu=row.jingqu;
+            // var addtuceng=row.addtuceng;
+            // var shouhuiditu=row.shouhuiditu;
+            // var addimage=row.addimage;
+            // var ninghaimaoyucun=row.ninghaimaoyucun;
+            // var ninghai=row.ninghai;
+            // var addmodel=row.addmodel;
+            // var addpanorama=row.addpanorama;
+            // var data1={"username":username,"cunzhuang":cunzhuang,"cesuo":cesuo,"minsu":minsu,"jingqu":jingqu,"addtuceng":addtuceng,"shouhuiditu":shouhuiditu,"addimage":addimage,"ninghaimaoyucun":ninghaimaoyucun,"ninghai":ninghai,"addmodel":addmodel,"addpanorama":addpanorama};
+            // $.ajax({
+            //     url: "http://localhost:12829/sso.asmx/EditUserPermission",
+            //     type:"post",
+            //     data:JSON.stringify(data1),
+            //     dataType:"json",
+            //     success:function (data) {
+            //         alert("修改成功");
+            //     }
+            // })
+        }
+        function cancelrow(target){
+            $('#tt').datagrid('cancelEdit', getRowIndex(target));
+        }
+    </script>
+</head>
+<body>
+
+<table id="tt"></table>
+</body>
+</html>
